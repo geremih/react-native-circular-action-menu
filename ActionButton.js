@@ -156,6 +156,7 @@ export default class ActionButton extends Component {
       <Animated.Text
         style={[styles.btnText,
                 {
+                  fontSize: this.props.buttonFontSize,
                   color: this.state.anim.interpolate({
                     inputRange: [0, 1],
                     outputRange: [this.props.buttonTextColor, this.props.btnOutRangeTxt]
@@ -196,7 +197,7 @@ export default class ActionButton extends Component {
               angle={startRadian + index * offset}
               btnColor={this.props.btnOutRange}
               {...button.props}
-              onPress={() => {
+              onPress={() => {
                   if (this.props.autoInactive) {
                     this.timeout = setTimeout(() => {
                       this.reset();
@@ -274,6 +275,8 @@ ActionButton.propTypes = {
   radius: PropTypes.number,
   children: PropTypes.node,
   position: PropTypes.oneOf(['left', 'center', 'right']),
+  btnOutRange: PropTypes.string,
+  buttonFontSize: PropTypes.number,
 };
 
 ActionButton.defaultProps = {
@@ -281,6 +284,7 @@ ActionButton.defaultProps = {
   bgColor: 'transparent',
   buttonColor: 'rgba(0,0,0,1)',
   buttonTextColor: 'rgba(255,255,255,1)',
+  buttonFontSize: 24,
   position: 'center',
   outRangeScale: 1,
   autoInactive: true,
@@ -326,7 +330,6 @@ const styles = StyleSheet.create({
   },
   btnText: {
     marginTop: -4,
-    fontSize: 24,
     backgroundColor: 'transparent',
     position: 'relative',
   },
