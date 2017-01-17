@@ -51,6 +51,12 @@ export default class ActionButton extends Component {
     clearTimeout(this.timeout);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      active: nextProps.active
+    });
+  }
+
   getActionButtonStyle() {
     return [styles.actionBarItem, this.getButtonSize()];
   }
@@ -95,6 +101,7 @@ export default class ActionButton extends Component {
     }).start();
 
     setTimeout(() => {
+      this.props.onClose();
       this.setState({ active: false });
     }, 250);
   }
@@ -266,6 +273,7 @@ ActionButton.propTypes = {
   autoInactive: PropTypes.bool,
   onPress: PropTypes.func,
   onOverlayPress: PropTypes.func,
+  onClose: PropTypes.func,
   backdrop: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object,
@@ -290,6 +298,7 @@ ActionButton.defaultProps = {
   autoInactive: true,
   onPress: () => {},
   onOverlayPress: () => {},
+  onClose: () => {},
   backdrop: false,
   degrees: 135,
   size: 63,
