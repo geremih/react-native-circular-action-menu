@@ -66,7 +66,7 @@ export default class ActionButton extends Component {
     return [styles.overlay, styles.actionContainer, {
       alignItems,
       justifyContent,
-    }];
+    }, {padding: this.props.padding}];
   }
   getActionsStyle() {
     return [this.getButtonSize()];
@@ -282,6 +282,7 @@ ActionButton.propTypes = {
   endDegree: PropTypes.number,
   radius: PropTypes.number,
   children: PropTypes.node,
+  padding: PropTypes.number,
   position: PropTypes.oneOf(['left', 'center', 'right']),
   btnOutRange: PropTypes.string,
   buttonFontSize: PropTypes.number,
@@ -293,6 +294,7 @@ ActionButton.defaultProps = {
   buttonColor: 'rgba(0,0,0,1)',
   buttonTextColor: 'rgba(255,255,255,1)',
   buttonFontSize: 24,
+  padding: 10,
   position: 'center',
   outRangeScale: 1,
   autoInactive: true,
@@ -318,8 +320,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   actionContainer: {
-    flexDirection: 'column',
-    padding: 10,
+    flexDirection: 'column'
   },
   actionBarItem: {
     alignItems: 'center',
