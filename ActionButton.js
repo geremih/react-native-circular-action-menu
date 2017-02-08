@@ -108,11 +108,11 @@ export default class ActionButton extends Component {
           activeOpacity={0.85}
           onLongPress={this.props.onLongPress}
           onPress={() => {
-              this.props.onPress();
-              if (this.props.children) {
-                this.animateButton();
-              }
-            }}
+            this.props.onPress();
+            if (this.props.children) {
+              this.animateButton();
+            }
+          }}
         >
           <Animated.View
             style={
@@ -155,12 +155,12 @@ export default class ActionButton extends Component {
     return (
       <Animated.Text
         style={[styles.btnText,
-                {
-                  color: this.state.anim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [this.props.buttonTextColor, this.props.btnOutRangeTxt]
-                  })
-                }]}>
+          {
+            color: this.state.anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [this.props.buttonTextColor, this.props.btnOutRangeTxt]
+            })
+          }]}>
         +
       </Animated.Text>
     );
@@ -181,6 +181,9 @@ export default class ActionButton extends Component {
 
     return (
       React.Children.map(this.props.children, (button, index) => {
+        const length = this.props.children.length;
+        const leftSide = index < length / 2 - 1;
+        const middle = length % 2 === 0 ? (index === (length / 2) || index === (length / 2) - 1) : index === (length / 2) - 0.5;
         return (
 
           <View
@@ -197,13 +200,15 @@ export default class ActionButton extends Component {
               btnColor={this.props.btnOutRange}
               {...button.props}
               onPress={() => {
-                  if (this.props.autoInactive) {
-                    this.timeout = setTimeout(() => {
-                      this.reset();
-                    }, 200);
-                  }
-                  button.props.onPress();
-                }}
+                if (this.props.autoInactive) {
+                  this.timeout = setTimeout(() => {
+                    this.reset();
+                  }, 200);
+                }
+                button.props.onPress();
+              }}
+              leftSide={leftSide}
+              middle={middle}
             />
           </View>
         );
@@ -222,12 +227,12 @@ export default class ActionButton extends Component {
         >
           <Animated.View
             style={
-              {
-                backgroundColor: this.props.bgColor,
-                opacity: this.state.anim,
-                flex: 1,
-              }
-                  }
+            {
+              backgroundColor: this.props.bgColor,
+              opacity: this.state.anim,
+              flex: 1,
+            }
+            }
           >
             {this.props.backdrop}
           </Animated.View>

@@ -100,3 +100,4 @@ Also this example uses `react-native-vector-icons` for the button Icons.
 | ------------- |:-------------:|:------------:       | ----------- |
 | onPress       | func          | null                | **required** function, triggers when a button is tapped
 | buttonColor   | string        | same as + button    | background color of the Button
+| tooltip       | string        | null                | text that is displayed next to the button
