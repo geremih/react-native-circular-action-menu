@@ -52,7 +52,7 @@ export default class ActionButton extends Component {
   }
 
   getActionButtonStyle() {
-    return [styles.actionBarItem, this.getButtonSize()];
+    return [this.props.style, styles.actionBarItem, this.getButtonSize()];
   }
 
   getActionContainerStyle() {
