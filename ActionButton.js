@@ -97,6 +97,7 @@ export default class ActionButton extends Component {
     setTimeout(() => {
       this.setState({ active: false });
     }, 250);
+    }, 100)
   }
 
   renderButton() {
@@ -140,6 +141,7 @@ export default class ActionButton extends Component {
                       }),
                     }],
                 }]}>
+              this.props.style,
             {this.renderButtonIcon()}
           </Animated.View>
         </TouchableOpacity>
@@ -209,6 +211,7 @@ export default class ActionButton extends Component {
         );
       })
     );
+                }, 100)
   }
 
 
@@ -316,13 +319,6 @@ const styles = StyleSheet.create({
   btn: {
     justifyContent: 'center',
     alignItems: 'center',
-    shadowOpacity: 0.3,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowColor: '#444',
-    shadowRadius: 1,
   },
   btnText: {
     marginTop: -4,
