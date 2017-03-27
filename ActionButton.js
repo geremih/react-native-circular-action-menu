@@ -116,32 +116,32 @@ export default class ActionButton extends Component {
             }}
         >
           <Animated.View
-            style={
-              [
-                styles.btn,
-                {
-                  width: this.props.size,
-                  height: this.props.size,
-                  borderRadius: this.props.size / 2,
-                  backgroundColor: this.state.anim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [this.props.buttonColor, this.props.btnOutRange]
-                  }),
-                  transform: [
-                    {
-                      scale: this.state.anim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [1, this.props.outRangeScale]
-                      }),
-                    },
-                    {
-                      rotate: this.state.anim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: ['0deg', this.props.degrees + 'deg']
-                      }),
-                    }],
-                }]}>
+            style={[
               this.props.style,
+              styles.btn,
+              {
+                width: this.props.size,
+                height: this.props.size,
+                borderRadius: this.props.size / 2,
+                backgroundColor: this.state.anim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [this.props.buttonColor, this.props.btnOutRange]
+                }),
+                transform: [
+                  {
+                    scale: this.state.anim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [1, this.props.outRangeScale]
+                    }),
+                  },
+                  {
+                    rotate: this.state.anim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: ['0deg', this.props.degrees + 'deg']
+                    }),
+                  }],
+                }]}
+              >
             {this.renderButtonIcon()}
           </Animated.View>
         </TouchableOpacity>
