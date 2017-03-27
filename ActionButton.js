@@ -113,7 +113,6 @@ export default class ActionButton extends Component {
         >
           <Animated.View
             style={[
-              this.props.style,
               styles.btn,
               {
                 width: this.props.size,
@@ -288,8 +287,8 @@ ActionButton.defaultProps = {
   size: 63,
   itemSize: 36,
   radius: 100,
-  btnOutRange: 'rgba(0,0,0,1)',
-  btnOutRangeTxt: 'rgba(255,255,255,1)',
+  btnOutRange: 'rgba(255, 255, 255, 1)',
+  btnOutRangeTxt: 'rgba(0, 0, 0, 1)',
 };
 
 const styles = StyleSheet.create({
