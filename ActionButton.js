@@ -96,8 +96,7 @@ export default class ActionButton extends Component {
 
     setTimeout(() => {
       this.setState({ active: false });
-    }, 250);
-    }, 100)
+    }, 100);
   }
 
   renderButton() {
@@ -202,7 +201,7 @@ export default class ActionButton extends Component {
                   if (this.props.autoInactive) {
                     this.timeout = setTimeout(() => {
                       this.reset();
-                    }, 200);
+                    }, 150);
                   }
                   button.props.onPress();
                 }}
