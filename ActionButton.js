@@ -51,7 +51,7 @@ export default class ActionButton extends Component {
   }
 
   getActionButtonStyle() {
-    return [this.props.style, styles.actionBarItem, this.getButtonSize()];
+    return [styles.actionBarItem, this.getButtonSize()];
   }
 
   getActionContainerStyle() {
@@ -113,6 +113,7 @@ export default class ActionButton extends Component {
         >
           <Animated.View
             style={[
+              this.props.style,
               styles.btn,
               {
                 width: this.props.size,
@@ -135,7 +136,7 @@ export default class ActionButton extends Component {
                       outputRange: ['0deg', this.props.degrees + 'deg']
                     }),
                   }],
-                }
+                },
               ]}
               >
             {this.renderButtonIcon()}
