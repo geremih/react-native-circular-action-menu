@@ -210,7 +210,6 @@ export default class ActionButton extends Component {
         );
       })
     );
-                }, 100)
   }
 
 
