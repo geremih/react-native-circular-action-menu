@@ -36,7 +36,6 @@ const alignMap = {
 };
 
 export default class ActionButton extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -72,7 +71,6 @@ export default class ActionButton extends Component {
       height: this.props.size,
     };
   }
-
 
   animateButton() {
     if (this.state.active) {
@@ -183,7 +181,6 @@ export default class ActionButton extends Component {
     return (
       React.Children.map(this.props.children, (button, index) => {
         return (
-
           <View
             pointerEvents="box-none"
             style={this.getActionContainerStyle()}
@@ -198,20 +195,19 @@ export default class ActionButton extends Component {
               btnColor={this.props.btnOutRange}
               {...button.props}
               onPress={() => {
-                  if (this.props.autoInactive) {
-                    this.timeout = setTimeout(() => {
-                      this.reset();
-                    }, 150);
-                  }
-                  button.props.onPress();
-                }}
+                if (this.props.autoInactive) {
+                  this.timeout = setTimeout(() => {
+                    this.reset();
+                  }, 150);
+                }
+                button.props.onPress();
+              }}
             />
           </View>
         );
       })
     );
   }
-
 
   render() {
     let backdrop;
