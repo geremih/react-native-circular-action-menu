@@ -135,8 +135,7 @@ export default class ActionButton extends Component {
                       outputRange: ['0deg', this.props.degrees + 'deg']
                     }),
                   }],
-                },
-                this.props.style,
+                }
               ]}
               >
             {this.renderButtonIcon()}
