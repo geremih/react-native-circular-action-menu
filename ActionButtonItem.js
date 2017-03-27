@@ -48,7 +48,6 @@ export default class ActionButtonItem extends Component {
           <View
             style={[
               styles.actionButton,
-              this.props.styles,
               {
                 width: this.props.size,
                 height: this.props.size,

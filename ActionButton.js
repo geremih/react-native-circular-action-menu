@@ -136,6 +136,7 @@ export default class ActionButton extends Component {
                     }),
                   }],
                 },
+                this.props.style,
               ]}
               >
             {this.renderButtonIcon()}
