@@ -36,7 +36,6 @@ const alignMap = {
 };
 
 export default class ActionButton extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +61,7 @@ export default class ActionButton extends Component {
       justifyContent,
     }];
   }
+
   getActionsStyle() {
     return [this.getButtonSize()];
   }
@@ -72,7 +72,6 @@ export default class ActionButton extends Component {
       height: this.props.size,
     };
   }
-
 
   animateButton() {
     if (this.state.active) {
@@ -96,50 +95,50 @@ export default class ActionButton extends Component {
 
     setTimeout(() => {
       this.setState({ active: false });
-    }, 250);
+    }, 100);
   }
 
   renderButton() {
     return (
-      <View
-        style={this.getActionButtonStyle()}
-      >
+      <View style={this.getActionButtonStyle()}>
         <TouchableOpacity
           activeOpacity={0.85}
           onLongPress={this.props.onLongPress}
           onPress={() => {
-              this.props.onPress();
-              if (this.props.children) {
-                this.animateButton();
-              }
-            }}
+            this.props.onPress();
+            if (this.props.children) {
+              this.animateButton();
+            }
+          }}
         >
           <Animated.View
-            style={
-              [
-                styles.btn,
-                {
-                  width: this.props.size,
-                  height: this.props.size,
-                  borderRadius: this.props.size / 2,
-                  backgroundColor: this.state.anim.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [this.props.buttonColor, this.props.btnOutRange]
-                  }),
-                  transform: [
-                    {
-                      scale: this.state.anim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [1, this.props.outRangeScale]
-                      }),
-                    },
-                    {
-                      rotate: this.state.anim.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: ['0deg', this.props.degrees + 'deg']
-                      }),
-                    }],
-                }]}>
+            style={[
+              styles.btn,
+              {
+                width: this.props.size,
+                height: this.props.size,
+                borderRadius: this.props.size / 2,
+                backgroundColor: this.state.anim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [this.props.buttonColor, this.props.btnOutRange]
+                }),
+                transform: [
+                  {
+                    scale: this.state.anim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [1, this.props.outRangeScale]
+                    }),
+                  },
+                  {
+                    rotate: this.state.anim.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: ['0deg', this.props.degrees + 'deg']
+                    }),
+                  }],
+                },
+                this.props.style,
+              ]}
+              >
             {this.renderButtonIcon()}
           </Animated.View>
         </TouchableOpacity>
@@ -182,7 +181,6 @@ export default class ActionButton extends Component {
     return (
       React.Children.map(this.props.children, (button, index) => {
         return (
-
           <View
             pointerEvents="box-none"
             style={this.getActionContainerStyle()}
@@ -197,20 +195,19 @@ export default class ActionButton extends Component {
               btnColor={this.props.btnOutRange}
               {...button.props}
               onPress={() => {
-                  if (this.props.autoInactive) {
-                    this.timeout = setTimeout(() => {
-                      this.reset();
-                    }, 200);
-                  }
-                  button.props.onPress();
-                }}
+                if (this.props.autoInactive) {
+                  this.timeout = setTimeout(() => {
+                    this.reset();
+                  }, 150);
+                }
+                button.props.onPress();
+              }}
             />
           </View>
         );
       })
     );
   }
-
 
   render() {
     let backdrop;
@@ -291,8 +288,8 @@ ActionButton.defaultProps = {
   size: 63,
   itemSize: 36,
   radius: 100,
-  btnOutRange: 'rgba(0,0,0,1)',
-  btnOutRangeTxt: 'rgba(255,255,255,1)',
+  btnOutRange: 'rgba(255, 255, 255, 1)',
+  btnOutRangeTxt: 'rgba(0, 0, 0, 1)',
 };
 
 const styles = StyleSheet.create({
@@ -316,13 +313,6 @@ const styles = StyleSheet.create({
   btn: {
     justifyContent: 'center',
     alignItems: 'center',
-    shadowOpacity: 0.3,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowColor: '#444',
-    shadowRadius: 1,
   },
   btnText: {
     marginTop: -4,
