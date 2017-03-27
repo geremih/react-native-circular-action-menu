@@ -61,6 +61,7 @@ export default class ActionButton extends Component {
       justifyContent,
     }];
   }
+
   getActionsStyle() {
     return [this.getButtonSize()];
   }
@@ -99,22 +100,19 @@ export default class ActionButton extends Component {
 
   renderButton() {
     return (
-      <View
-        style={this.getActionButtonStyle()}
-      >
+      <View style={this.getActionButtonStyle()}>
         <TouchableOpacity
           activeOpacity={0.85}
           onLongPress={this.props.onLongPress}
           onPress={() => {
-              this.props.onPress();
-              if (this.props.children) {
-                this.animateButton();
-              }
-            }}
+            this.props.onPress();
+            if (this.props.children) {
+              this.animateButton();
+            }
+          }}
         >
           <Animated.View
             style={[
-              this.props.style,
               styles.btn,
               {
                 width: this.props.size,
@@ -137,7 +135,9 @@ export default class ActionButton extends Component {
                       outputRange: ['0deg', this.props.degrees + 'deg']
                     }),
                   }],
-                }]}
+                },
+                this.props.style,
+              ]}
               >
             {this.renderButtonIcon()}
           </Animated.View>
