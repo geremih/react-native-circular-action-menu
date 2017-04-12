@@ -297,7 +297,7 @@ ActionButton.defaultProps = {
   padding: 10,
   position: 'center',
   outRangeScale: 1,
-  autoInactive: true,
+  autoInactive: false,
   onPress: () => {},
   onOverlayPress: () => {},
   onClose: () => {},
@@ -339,7 +339,6 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
   },
   btnText: {
-    marginTop: -4,
     backgroundColor: 'transparent',
     position: 'relative',
   },
