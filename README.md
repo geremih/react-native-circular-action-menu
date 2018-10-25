@@ -86,6 +86,7 @@ Also this example uses `react-native-vector-icons` for the button Icons.
 | radius | number | 100 | radius of menu
 | bgColor   | string        | "transparent"       | color of overlay when ActionButtons are visible
 | buttonColor    | string        | "rgba(0,0,0,1)"     | background color of the +Button **(must be rgba value!)**
+| buttonFontSize | number        | 24                  | + and x sizes
 | btnOutRange    | string        | props.buttonColor   | button background color to animate to
 | outRangeScale  | number        | 1                   | changes size of button during animation
 | onPress        | function      | null                | fires, when ActionButton is tapped

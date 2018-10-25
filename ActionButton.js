@@ -51,6 +51,12 @@ export default class ActionButton extends Component {
     clearTimeout(this.timeout);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      active: nextProps.active
+    });
+  }
+
   getActionButtonStyle() {
     return [styles.actionBarItem, this.getButtonSize()];
   }
@@ -60,7 +66,7 @@ export default class ActionButton extends Component {
     return [styles.overlay, styles.actionContainer, {
       alignItems,
       justifyContent,
-    }];
+    }, {padding: this.props.padding}];
   }
   getActionsStyle() {
     return [this.getButtonSize()];
@@ -95,6 +101,7 @@ export default class ActionButton extends Component {
     }).start();
 
     setTimeout(() => {
+      this.props.onClose();
       this.setState({ active: false });
     }, 250);
   }
@@ -156,6 +163,7 @@ export default class ActionButton extends Component {
       <Animated.Text
         style={[styles.btnText,
                 {
+                  fontSize: this.props.buttonFontSize,
                   color: this.state.anim.interpolate({
                     inputRange: [0, 1],
                     outputRange: [this.props.buttonTextColor, this.props.btnOutRangeTxt]
@@ -196,7 +204,7 @@ export default class ActionButton extends Component {
               angle={startRadian + index * offset}
               btnColor={this.props.btnOutRange}
               {...button.props}
-              onPress={() => {
+              onPress={() => {
                   if (this.props.autoInactive) {
                     this.timeout = setTimeout(() => {
                       this.reset();
@@ -265,6 +273,7 @@ ActionButton.propTypes = {
   autoInactive: PropTypes.bool,
   onPress: PropTypes.func,
   onOverlayPress: PropTypes.func,
+  onClose: PropTypes.func,
   backdrop: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.object,
@@ -273,7 +282,10 @@ ActionButton.propTypes = {
   endDegree: PropTypes.number,
   radius: PropTypes.number,
   children: PropTypes.node,
+  padding: PropTypes.number,
   position: PropTypes.oneOf(['left', 'center', 'right']),
+  btnOutRange: PropTypes.string,
+  buttonFontSize: PropTypes.number,
 };
 
 ActionButton.defaultProps = {
@@ -281,11 +293,14 @@ ActionButton.defaultProps = {
   bgColor: 'transparent',
   buttonColor: 'rgba(0,0,0,1)',
   buttonTextColor: 'rgba(255,255,255,1)',
+  buttonFontSize: 24,
+  padding: 10,
   position: 'center',
   outRangeScale: 1,
-  autoInactive: true,
+  autoInactive: false,
   onPress: () => {},
   onOverlayPress: () => {},
+  onClose: () => {},
   backdrop: false,
   degrees: 135,
   size: 63,
@@ -305,8 +320,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   actionContainer: {
-    flexDirection: 'column',
-    padding: 10,
+    flexDirection: 'column'
   },
   actionBarItem: {
     alignItems: 'center',
@@ -325,8 +339,6 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
   },
   btnText: {
-    marginTop: -4,
-    fontSize: 24,
     backgroundColor: 'transparent',
     position: 'relative',
   },
