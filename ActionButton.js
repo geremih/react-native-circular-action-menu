@@ -12,6 +12,12 @@ import {
 import PropTypes from 'prop-types';
 import ActionButtonItem from './ActionButtonItem';
 
+ const defaultConfig = {
+      actionOverlay:{
+        bottom:70
+      }
+  }
+
 const alignMap = {
   center: {
     alignItems: 'center',
@@ -53,6 +59,10 @@ export default class ActionButton extends Component {
 
   getActionButtonStyle() {
     return [styles.actionBarItem, this.getButtonSize()];
+  }
+  getActionContainerOverlay() {
+    const {bottomDistance} = this.props
+    return [styles.buttonActionOverlay, {bottom:(bottomDistance)?bottomDistance:defaultConfig.actionOverlay.bottom}];
   }
 
   getActionContainerStyle() {
@@ -241,7 +251,9 @@ export default class ActionButton extends Component {
       >
         {backdrop}
 
-        {this.props.children && this.renderActions()}
+        <View style={this.getActionContainerOverlay()}>
+          {this.props.children && this.renderActions()}
+        </View>
         <View
           pointerEvents="box-none"
           style={this.getActionContainerStyle()}
@@ -296,6 +308,10 @@ ActionButton.defaultProps = {
 };
 
 const styles = StyleSheet.create({
+ buttonActionOverlay:{
+    position:"absolute",
+    bottom:100
+  },
   overlay: {
     position: 'absolute',
     bottom: 0,
