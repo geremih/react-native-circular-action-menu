@@ -25,33 +25,39 @@ export default class ActionButtonItem extends Component {
               translateY: this.props.anim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, offsetY],
-              }) },
+              })
+            },
             {
               translateX: this.props.anim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, offsetX],
-              }) },
+              })
+            },
             {
               rotate: this.props.anim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [`${this.props.startDegree}deg`, `${this.props.endDegree}deg`],
-              }) },
+              })
+            },
             {
               scale: this.props.anim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, 1],
-              }) },
+              })
+            },
           ]
         }]}
       >
-        <TouchableOpacity style={{flex:1}} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
+        <TouchableOpacity style={{ flex: 1 }} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
           <View
-            style={[styles.actionButton,{
+            style={[styles.actionButton, {
               width: this.props.size,
               height: this.props.size,
               borderRadius: this.props.size / 2,
               backgroundColor: this.props.buttonColor,
-            }]}
+            },
+            this.props.style,
+            this.props.active ? this.props.activeStyle : undefined]}
           >
             {this.props.children}
           </View>
@@ -70,12 +76,16 @@ ActionButtonItem.propTypes = {
   children: PropTypes.node.isRequired,
   startDegree: PropTypes.number,
   endDegree: PropTypes.number,
+  style: PropTypes.object,
+  activeStyle: PropTypes.object,
+  active: PropTypes.bool,
 };
 
 ActionButtonItem.defaultProps = {
-  onPress: () => {},
+  onPress: () => { },
   startDegree: 0,
-  endDegree: 720
+  endDegree: 720,
+  active: false,
 };
 
 const styles = StyleSheet.create({
