@@ -60,7 +60,8 @@ export default class ActionButton extends Component {
     return [styles.overlay, styles.actionContainer, {
       alignItems,
       justifyContent,
-    }];
+    },
+    this.props.containerStyle];
   }
   getActionsStyle() {
     return [this.getButtonSize()];
@@ -276,6 +277,7 @@ ActionButton.propTypes = {
   children: PropTypes.node,
   position: PropTypes.oneOf(['left', 'center', 'right']),
   style: PropTypes.object,
+  containerStyle: PropTypes.object,
 };
 
 ActionButton.defaultProps = {
@@ -295,7 +297,8 @@ ActionButton.defaultProps = {
   radius: 100,
   btnOutRange: 'rgba(0,0,0,1)',
   btnOutRangeTxt: 'rgba(255,255,255,1)',
-  style: {}
+  style: {},
+  containerStyle: {}
 };
 
 const styles = StyleSheet.create({
