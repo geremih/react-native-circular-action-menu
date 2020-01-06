@@ -12,35 +12,51 @@ import PropTypes from 'prop-types';
 export default class ActionButtonItem extends Component {
 
   render() {
-    const offsetX = this.props.radius * Math.cos(this.props.angle);
-    const offsetY = this.props.radius * Math.sin(this.props.angle);
+    const {
+      radius,
+      angle,
+      anim,
+      size,
+      startDegree,
+      endDegree,
+      activeOpacity,
+      onPress,
+      buttonColor,
+      style,
+      active,
+      activeStyle,
+      children,
+      ...others
+    } = this.props;
+    const offsetX = radius * Math.cos(angle);
+    const offsetY = radius * Math.sin(angle);
     return (
       <Animated.View
         style={[{
-          opacity: this.props.anim,
-          width: this.props.size,
-          height: this.props.size,
+          opacity: anim,
+          width: size,
+          height: size,
           transform: [
             {
-              translateY: this.props.anim.interpolate({
+              translateY: anim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, offsetY],
               })
             },
             {
-              translateX: this.props.anim.interpolate({
+              translateX: anim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, offsetX],
               })
             },
             {
-              rotate: this.props.anim.interpolate({
+              rotate: anim.interpolate({
                 inputRange: [0, 1],
-                outputRange: [`${this.props.startDegree}deg`, `${this.props.endDegree}deg`],
+                outputRange: [`${startDegree}deg`, `${endDegree}deg`],
               })
             },
             {
-              scale: this.props.anim.interpolate({
+              scale: anim.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, 1],
               })
@@ -48,18 +64,22 @@ export default class ActionButtonItem extends Component {
           ]
         }]}
       >
-        <TouchableOpacity style={{ flex: 1 }} activeOpacity={this.props.activeOpacity || 0.85} onPress={this.props.onPress}>
+        <TouchableOpacity
+          {...others}
+          style={{ flex: 1 }}
+          activeOpacity={activeOpacity || 0.85}
+          onPress={onPress}>
           <View
             style={[styles.actionButton, {
-              width: this.props.size,
-              height: this.props.size,
-              borderRadius: this.props.size / 2,
-              backgroundColor: this.props.buttonColor,
+              width: size,
+              height: size,
+              borderRadius: size / 2,
+              backgroundColor: buttonColor,
             },
-            this.props.style,
-            this.props.active ? this.props.activeStyle : undefined]}
+              style,
+            active ? activeStyle : undefined]}
           >
-            {this.props.children}
+            {children}
           </View>
         </TouchableOpacity>
       </Animated.View>
