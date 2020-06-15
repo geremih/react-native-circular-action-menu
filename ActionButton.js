@@ -83,6 +83,7 @@ export default class ActionButton extends Component {
     Animated.spring(this.state.anim, {
       toValue: 1,
       duration: 250,
+      useNativeDriver: false,
     }).start();
 
     this.setState({ active: true });
@@ -92,6 +93,7 @@ export default class ActionButton extends Component {
     Animated.spring(this.state.anim, {
       toValue: 0,
       duration: 250,
+      useNativeDriver: false,
     }).start();
 
     setTimeout(() => {
