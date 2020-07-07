@@ -104,7 +104,7 @@ export default class ActionButton extends Component {
     return (
       <View style={this.getActionButtonStyle()}>
         <TouchableOpacity
-          testId="action_button"
+          testID={'action_button'}
           activeOpacity={0.85}
           onLongPress={this.props.onLongPress}
           onPress={() => {
@@ -221,7 +221,7 @@ export default class ActionButton extends Component {
     if (this.state.active) {
       backdrop = (
         <TouchableWithoutFeedback
-          testID="dismiss_action"
+          testID={'dismiss_action'}
           style={styles.overlay}
           onPress={() => {
             this.reset();
